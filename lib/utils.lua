@@ -1,0 +1,18 @@
+local function deep_copy(x)
+    if type(x) == 'table' then
+        local nx = {}
+        for k, v in next, x, nil do
+            nx[deep_copy(k)] = deep_copy(v)
+        end
+        return nx
+    else
+        return x
+    end
+end
+
+function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+  return x1 < x2+w2 and
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
+end
